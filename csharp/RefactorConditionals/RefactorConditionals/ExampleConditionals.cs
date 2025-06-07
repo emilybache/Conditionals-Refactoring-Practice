@@ -110,7 +110,7 @@ public class ExampleConditionals
         return result * factor;
     }
 
-    public static int Normalize(String s1, String s2)
+    public static int Normalize_aka_LiftUp(String s1, String s2)
     {
         if (s1 != "hello")
         {
