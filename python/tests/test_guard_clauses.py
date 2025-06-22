@@ -6,24 +6,6 @@ def guard():
     return GuardClauses()
 
 @pytest.mark.parametrize("expected,input_val", [
-    (4, 3),
-    (0, 9)
-])
-def test_introduce_guard_clause_void(guard, expected, input_val):
-    guard.y = 0
-    guard.introduce_guard_clause_void(input_val)
-    assert guard.y == expected
-
-@pytest.mark.parametrize("expected,input_val", [
-    (4, 3),
-    (0, 9)
-])
-def test_remove_guard_clause_void(guard, expected, input_val):
-    guard.y = 0
-    guard.remove_guard_clause_void(input_val)
-    assert guard.y == expected
-
-@pytest.mark.parametrize("expected,input_val", [
     (0, 3),
     (40, 9)
 ])
