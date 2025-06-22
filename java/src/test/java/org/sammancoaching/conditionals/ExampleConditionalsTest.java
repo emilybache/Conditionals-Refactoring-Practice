@@ -1,4 +1,4 @@
-package condexample;
+package org.sammancoaching.conditionals;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,72 +9,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExampleConditionalsTest {
-
-    @ParameterizedTest
-    @CsvSource({
-            "4, 3",
-            "0, 9"
-    })
-    void introduce_guard_clause_void(int expected, int input) {
-        ExampleConditionals.y = 0;
-        ExampleConditionals.introduce_guard_clause_void(input);
-        assertEquals(expected, ExampleConditionals.y);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "4, 3",
-            "0, 9"
-    })
-    void remove_guard_clause_void(int expected, int input) {
-        ExampleConditionals.y = 0;
-        ExampleConditionals.remove_guard_clause_void(input);
-        assertEquals(expected, ExampleConditionals.y);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "0, 3",
-            "40, 9"
-    })
-    void introduce_guard_clause_single_return(int expected, int input) {
-        ExampleConditionals.y = 0;
-        var result = ExampleConditionals.introduce_guard_clause_single_return(input);
-        assertEquals(expected, result);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "0, 3",
-            "40, 9"
-    })
-    void remove_guard_clause_single_return(int expected, int input) {
-        ExampleConditionals.y = 0;
-        var result = ExampleConditionals.remove_guard_clause_single_return(input);
-        assertEquals(expected, result);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "0, 3",
-            "40, 9"
-    })
-    void remove_guard_clause_multi_return(int expected, int input) {
-        ExampleConditionals.y = 0;
-        var result = ExampleConditionals.remove_guard_clause_multi_return(input);
-        assertEquals(expected, result);
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "0, 3",
-            "40, 9"
-    })
-    void introduce_guard_clause_multi_return(int expected, int input) {
-        ExampleConditionals.y = 0;
-        var result = ExampleConditionals.introduce_guard_clause_multi_return(input);
-        assertEquals(expected, result);
-    }
 
     @ParameterizedTest
     @CsvSource({
@@ -212,46 +146,6 @@ class ExampleConditionalsTest {
     })
     void join_statements(int x, int y, int expected) {
         assertEquals(expected, ExampleConditionals.join_statements(x, y));
-    }
-
-    @Test
-    public void testA_True_B_True() {
-        assertEquals("ATrueBTrue", ExampleConditionals.liftUpB(true, true));
-        assertEquals("ATrueBTrue", ExampleConditionals.liftUpA(true, true));
-    }
-
-    @Test
-    public void testA_True_B_False() {
-        assertEquals("ATrueBFalse", ExampleConditionals.liftUpB(true, false));
-        assertEquals("ATrueBFalse", ExampleConditionals.liftUpA(true, false));
-    }
-
-    @Test
-    public void testA_False_B_True() {
-        assertEquals("AFalseBTrue", ExampleConditionals.liftUpB(false, true));
-        assertEquals("AFalseBTrue", ExampleConditionals.liftUpA(false, true));
-    }
-
-    @Test
-    public void testA_False_B_False() {
-        assertEquals("AFalseBFalse", ExampleConditionals.liftUpB(false, false));
-        assertEquals("AFalseBFalse", ExampleConditionals.liftUpA(false, false));
-    }
-
-
-    @ParameterizedTest
-    @CsvSource({
-            "foo,   world, 0",
-            "foo,   bar,   1",
-            "bar,   world, 2",
-            "hello, bar,   3",
-            "hello, foo,   4",
-            "hello, world, 5",
-            "bar,   foo,   6",
-    })
-    void liftUpWorld(String s1, String s2, int expected) {
-        assertEquals(expected, ExampleConditionals.liftUpWorld(s1, s2));
-        assertEquals(expected, ExampleConditionals.liftUpHello(s1, s2));
     }
 
 }

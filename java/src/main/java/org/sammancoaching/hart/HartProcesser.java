@@ -1,4 +1,4 @@
-package hart;
+package org.sammancoaching.hart;
 
 public class HartProcesser {
 

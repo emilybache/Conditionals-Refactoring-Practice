@@ -1,4 +1,4 @@
-package gdi_calc;
+package org.sammancoaching.gdi_calc;
 
 import java.util.Random; /**
  * hard to construct - cannot be used in a unit test
