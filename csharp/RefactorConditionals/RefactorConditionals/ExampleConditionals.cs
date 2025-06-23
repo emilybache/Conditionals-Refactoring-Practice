@@ -36,11 +36,15 @@
             {
                 return 10;
             }
+
             if (x < 30)
             {
                 return 30;
             }
-            return 0;
+            else
+            {
+                return 0;
+            }
         }
 
         public static int MissingElse(int x)
@@ -49,14 +53,17 @@
             {
                 return 1;
             }
+
             if (x < 10)
             {
                 return 10;
             }
+
             if (x < 30)
             {
                 return 30;
             }
+
             return 0;
         }
 
@@ -79,6 +86,7 @@
                     return x + y;
                 }
             }
+
             return 0;
         }
 
@@ -100,10 +108,12 @@
             {
                 return true;
             }
+
             if (y <= 3)
             {
                 return true;
             }
+
             return y == 10;
         }
 
@@ -113,6 +123,7 @@
             {
                 return true;
             }
+
             return false;
         }
 
@@ -124,10 +135,12 @@
             {
                 factor = x;
             }
+
             if (x > 3)
             {
                 result += y * 3;
             }
+
             return result * factor;
         }
 
@@ -140,6 +153,7 @@
                 result += y * 3;
                 factor = x;
             }
+
             return result * factor;
         }
     }
