@@ -10,4 +10,4 @@ install requirements:
 
 run tests:
 
-    PYTHONPATH=src:tests python -m pytest
+    python -m pytest
