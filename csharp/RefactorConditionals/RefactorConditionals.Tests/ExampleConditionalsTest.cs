@@ -1,121 +1,143 @@
-using System.Runtime.InteropServices;
+using Xunit;
 
-namespace RefactorConditionals.Tests;
-
-public class ExampleConditionalsTest
+namespace RefactorConditionals.Tests
 {
-
-    [Theory]
-    [InlineData(4, 3)]
-    [InlineData(3, 5)]
-    [InlineData(3, 1)]
-    [InlineData(3, 4)]
-	void Invert(int expected, int actual)
+    public class ExampleConditionalsTest
     {
-        Assert.Equal(expected, ExampleConditionals.Invert(actual));
-    }
+        [Theory]
+        [InlineData(4, 3)]
+        [InlineData(3, 5)]
+        [InlineData(3, 1)]
+        [InlineData(3, 4)]
+        public void InvertNegative(int expected, int actual)
+        {
+            Assert.Equal(expected, ExampleConditionals.InvertNegative(actual));
+        }
 
-    [Theory]
-    [InlineData(2, 1)]
-    [InlineData(7, 10)]
-    [InlineData(29, 30)]
-    [InlineData(30, 0)]
-	void Redundant_else(int x, int expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Redundant_else(x));
-    }
+        [Theory]
+        [InlineData(4, 3)]
+        [InlineData(3, 5)]
+        [InlineData(3, 1)]
+        [InlineData(3, 4)]
+        public void InvertPositive(int expected, int actual)
+        {
+            Assert.Equal(expected, ExampleConditionals.InvertPositive(actual));
+        }
 
-    [Theory]
-    [InlineData(5)]
-    [InlineData(7)]
-	void DeMorgan_true(int valid)
-    {
-        Assert.True(ExampleConditionals.DeMorgan(valid));
-    }
+        [Theory]
+        [InlineData(2, 1)]
+        [InlineData(7, 10)]
+        [InlineData(29, 30)]
+        [InlineData(30, 0)]
+        public void RedundantElse(int x, int expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.RedundantElse(x));
+        }
 
-    [Theory]
-    [InlineData(4)]
-    [InlineData(8)]
-	void DeMorgan_false(int invalid)
-    {
-        Assert.False(ExampleConditionals.DeMorgan(invalid));
-    }
+        [Theory]
+        [InlineData(2, 1)]
+        [InlineData(7, 10)]
+        [InlineData(29, 30)]
+        [InlineData(30, 0)]
+        public void MissingElse(int x, int expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.MissingElse(x));
+        }
 
-    [Theory]
-    [InlineData(4, 3, 0)]
-    [InlineData(7, 3, 0)]
-    [InlineData(1, 3, 0)]
-    [InlineData(3, 4, 7)]
-    [InlineData(3, 11, 0)]
-	void Join_AND(int x, int y, int expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Join_AND(x, y));
-    }
+        [Theory]
+        [InlineData(5)]
+        [InlineData(7)]
+        public void DeMorganAndTrue(int valid)
+        {
+            Assert.True(ExampleConditionals.DeMorganAnd(valid));
+        }
 
-    [Theory]
-    [InlineData(4, 3, 0)]
-    [InlineData(7, 3, 0)]
-    [InlineData(1, 3, 0)]
-    [InlineData(3, 4, 7)]
-    [InlineData(3, 11, 0)]
-	void Split_AND(int x, int y, int expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Split_AND(x, y));
-    }
+        [Theory]
+        [InlineData(4)]
+        [InlineData(8)]
+        public void DeMorganAndFalse(int invalid)
+        {
+            Assert.False(ExampleConditionals.DeMorganAnd(invalid));
+        }
 
-    [Theory]
-    [InlineData(0, 3, true)]
-    [InlineData(3, 6, true)]
-    [InlineData(-1, 3, true)]
-    [InlineData(-1, 5, false)]
-    [InlineData(-1, 10, true)]
-	void Join_OR(int x, int y, bool expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Join_OR(x, y));
-    }
+        [Theory]
+        [InlineData(5)]
+        [InlineData(7)]
+        public void DeMorganOrTrue(int valid)
+        {
+            Assert.True(ExampleConditionals.DeMorganOr(valid));
+        }
 
-    [Theory]
-    [InlineData(0, 3, true)]
-    [InlineData(3, 6, true)]
-    [InlineData(-1, 3, true)]
-    [InlineData(-1, 5, false)]
-    [InlineData(-1, 10, true)]
-	void Split_OR(int x, int y, bool expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Split_OR(x, y));
-    }
+        [Theory]
+        [InlineData(4)]
+        [InlineData(8)]
+        public void DeMorganOrFalse(int invalid)
+        {
+            Assert.False(ExampleConditionals.DeMorganOr(invalid));
+        }
 
-    [Theory]
-    [InlineData(4, 3, 36)]
-    [InlineData(7, 3, 63)]
-    [InlineData(1, 3, 0)]
-    [InlineData(3, 4, 0)]
-	void Split_statements(int x, int y, int expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Split_statements(x, y));
-    }
+        [Theory]
+        [InlineData(4, 3, 0)]
+        [InlineData(7, 3, 0)]
+        [InlineData(1, 3, 0)]
+        [InlineData(3, 4, 7)]
+        [InlineData(3, 11, 0)]
+        public void JoinAnd(int x, int y, int expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.JoinAnd(x, y));
+        }
 
-    [Theory]
-    [InlineData(4, 3, 36)]
-    [InlineData(7, 3, 63)]
-    [InlineData(1, 3, 0)]
-    [InlineData(3, 4, 0)]
-	void Join_statements(int x, int y, int expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Join_statements(x, y));
-    }
+        [Theory]
+        [InlineData(4, 3, 0)]
+        [InlineData(7, 3, 0)]
+        [InlineData(1, 3, 0)]
+        [InlineData(3, 4, 7)]
+        [InlineData(3, 11, 0)]
+        public void SplitAnd(int x, int y, int expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.SplitAnd(x, y));
+        }
 
-    [Theory]
-    [InlineData("foo", "world", 0)]
-    [InlineData("foo", "bar", 1)]
-    [InlineData("bar", "world", 2)]
-    [InlineData("hello", "bar", 3)]
-    [InlineData("hello", "foo", 4)]
-    [InlineData("hello", "world", 5)]
-    [InlineData("bar", "foo", 6)]
-	void Normalize(String s1, String s2, int expected)
-    {
-        Assert.Equal(expected, ExampleConditionals.Normalize(s1, s2));
-    }
+        [Theory]
+        [InlineData(0, 3, true)]
+        [InlineData(3, 6, true)]
+        [InlineData(-1, 3, true)]
+        [InlineData(-1, 5, false)]
+        [InlineData(-1, 10, true)]
+        public void JoinOr(int x, int y, bool expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.JoinOr(x, y));
+        }
 
+        [Theory]
+        [InlineData(0, 3, true)]
+        [InlineData(3, 6, true)]
+        [InlineData(-1, 3, true)]
+        [InlineData(-1, 5, false)]
+        [InlineData(-1, 10, true)]
+        public void SplitOr(int x, int y, bool expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.SplitOr(x, y));
+        }
+
+        [Theory]
+        [InlineData(4, 3, 36)]
+        [InlineData(7, 3, 63)]
+        [InlineData(1, 3, 0)]
+        [InlineData(3, 4, 0)]
+        public void SplitStatements(int x, int y, int expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.SplitStatements(x, y));
+        }
+
+        [Theory]
+        [InlineData(4, 3, 36)]
+        [InlineData(7, 3, 63)]
+        [InlineData(1, 3, 0)]
+        [InlineData(3, 4, 0)]
+        public void JoinStatements(int x, int y, int expected)
+        {
+            Assert.Equal(expected, ExampleConditionals.JoinStatements(x, y));
+        }
+    }
 }
