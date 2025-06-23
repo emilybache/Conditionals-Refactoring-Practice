@@ -10,16 +10,17 @@ def invert_positive(x):
     else:
         return 3
 
-def redundant_else(x):
+def redundant_elses(x):
     if x < 3:
         return 1
     elif x < 10:
         return 10
     if x < 30:
         return 30
-    return 0
+    else:
+        return 0
 
-def missing_else(x):
+def missing_elses(x):
     if x < 3:
         return 1
     if x < 10:

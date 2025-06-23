@@ -26,7 +26,7 @@ def test_invert_positive(expected, actual):
     (30, 0)
 ])
 def test_redundant_else(x, expected):
-    assert redundant_else(x) == expected
+    assert redundant_elses(x) == expected
 
 @pytest.mark.parametrize("x,expected", [
     (2, 1),
@@ -35,7 +35,7 @@ def test_redundant_else(x, expected):
     (30, 0)
 ])
 def test_missing_else(x, expected):
-    assert missing_else(x) == expected
+    assert missing_elses(x) == expected
 
 @pytest.mark.parametrize("valid", [5, 7])
 def test_de_morgan_and_true(valid):
